@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&display=swap"
+        rel="stylesheet">
+    <title>Abfahrt</title>
+    <style>
+        .countdown {
+            font-size: 3vw;
+            font-family: "Source Code Pro", monospace;
+        }
+
+        .heading {
+            font-size: 7vw;
+            font-weight: bold;
+            font-family: "Kanit", sans-serif;
+        }
+
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            width: 100vw;
+        }
+    </style>
+
+    <script>
+        function countdown() {
+            const now = new Date();
+            const targetDate = new Date(now.getFullYear(), 6, 28, 6, 0, 0); // Month is 0-indexed
+
+            let diff = targetDate - now;
+
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            diff -= days * (1000 * 60 * 60 * 24);
+
+            const hours = Math.floor(diff / (1000 * 60 * 60));
+            diff -= hours * (1000 * 60 * 60);
+
+            const mins = Math.floor(diff / (1000 * 60));
+            diff -= mins * (1000 * 60);
+
+            const secs = Math.floor(diff / 1000);
+
+            return `${days} Tage ${hours} Stunden ${mins} Minuten ${secs} Sekunden`;
+        }
+        window.onload = function () {
+            const countdownDiv = document.querySelector('.countdown');
+
+            // Call the countdown function once immediately
+            countdownDiv.textContent = countdown();
+
+            // Then set the interval
+            setInterval(function () {
+                countdownDiv.textContent = countdown();
+            }, 1000);
+        };
+    </script>
+</head>
+
+<body>
+    <div class="container">
+        <div class="heading">Abfahrt Kroatien 2024</div>
+        <div class="countdown"></div>
+    </div>
+</body>
+
+</html>
